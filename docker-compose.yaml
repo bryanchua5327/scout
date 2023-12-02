@@ -1,0 +1,10 @@
+version: "3"
+services:
+  htmx:
+    build:
+      dockerfile: Dockerfile
+      context: ./
+    volumes:
+      - ./:/app
+    ports:
+      - 8081:8080
