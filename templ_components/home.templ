@@ -1,0 +1,39 @@
+package templ_components
+
+import "go-htmx-template/model"
+
+templ HomePage(name string) {
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Hello, World!</title>
+		<script src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="/dist/tailwind.css"/>
+	</head>
+	<body>
+		<p class="">
+			Hello,  { name } ! Welcome Back
+		</p>
+		<div id="user-info">
+			<button
+				hx-get="/components/userInfo"
+				hx-target="#user-info"
+				hx-swap="innerHTML"
+				class
+			>
+				Reveal Info
+			</button>
+		</div>
+	</body>
+}
+
+templ UserInfo(user model.User) {
+	<div>
+		<p class="font-bold">User Personal Information:</p>
+		<ol>
+			<li>Name:  { user.Name } </li>
+			<li>Phone:  { user.Phone } </li>
+			<li>Email:  { user.Email } </li>
+		</ol>
+	</div>
+}

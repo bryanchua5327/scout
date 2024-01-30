@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"go-htmx-template/api"
 	"go-htmx-template/pages"
-	"html/template"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -28,11 +27,6 @@ func main() {
 	)))
 	e.Use(middleware.Logger())
 	e.Static("/dist", "dist")
-
-	renderer := &TemplateRenderer{
-		templates: template.Must(template.ParseGlob("public/*.html")),
-	}
-	e.Renderer = renderer
 	// Routes
 
 	api.RegisterRoutes(e)

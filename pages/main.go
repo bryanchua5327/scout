@@ -3,23 +3,22 @@ package pages
 import (
 	"net/http"
 
+	"go-htmx-template/pages/components"
+	"go-htmx-template/templ_components"
+	"go-htmx-template/utils"
+
 	"github.com/labstack/echo/v4"
 )
 
-type Home struct {
-	Name string `json:"name" form:"name" query:"name"`
-	Date string `json:"date" form:"date" query:"date"`
-}
-
 func RegisterRoutes(e *echo.Echo) {
 
-	e.GET("/home", func(c echo.Context) error {
-		u := new(Home)
-		if err := c.Bind(u); err != nil {
-			return c.String(http.StatusBadRequest, "bad request")
-		}
+	e.GET("/home", HomePage)
 
-		return c.Render(http.StatusOK, "home", u)
-	})
+	apiGroup := e.Group("/components")
+	apiGroup.GET("/userInfo", components.GetUserInfo)
 
+}
+
+func HomePage(c echo.Context) error {
+	return utils.Render(c, http.StatusOK, templ_components.HomePage("John"))
 }
