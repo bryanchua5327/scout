@@ -5,8 +5,7 @@ type Home struct {
 	Date string `json:"date" form:"date" query:"date"`
 }
 
-type User struct {
-	Name  string
-	Phone string
-	Email string
+type Rating struct {
+	Score        float32
+	TotalReviews int32
 }
